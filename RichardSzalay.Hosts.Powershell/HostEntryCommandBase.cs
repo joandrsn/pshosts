@@ -8,9 +8,14 @@ namespace RichardSzalay.Hosts.Powershell
 {
     public abstract class HostEntryCommandBase : PSCmdlet
     {
+        [Parameter]
+        public string HostsFile { get; set; }
+
         protected HostsFile GetHostsFile()
         {
-            return new HostsFile();
+            return String.IsNullOrEmpty(HostsFile)
+                ? new HostsFile()
+                : new HostsFile(HostsFile);
         }
 
         protected bool TryGetHostEntries(HostsFile hostsFile, string name, int line, out ICollection<HostEntry> hostEntries)
