@@ -67,7 +67,7 @@ namespace RichardSzalay.Hosts.Powershell
                 new [] { "Address", "Comment", "Enabled" },
                 x => x, x => x, (x,y) => x);
 
-            sb.Append(String.Join(", ", modifiedProperties));
+            sb.Append(String.Join(", ", modifiedProperties.ToArray()));
 
             sb.Append(")");
 
